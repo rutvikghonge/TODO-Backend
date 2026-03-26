@@ -26,5 +26,8 @@ export const verifyAuth = (req, res, next) => {
         }).catch((err) => {
             return res.status(500).json({ error: 'Internal server error during auth' });
         });
+    }).catch(err => {
+        console.error("Failed to load supabase config:", err);
+        return res.status(500).json({ error: 'Database configuration error' });
     });
 };

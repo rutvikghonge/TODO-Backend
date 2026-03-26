@@ -21,4 +21,10 @@ app.get('/api/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Backend is running' });
 });
 
+// Global Error Handler to guarantee JSON responses
+app.use((err, req, res, next) => {
+    console.error('Unhandled Error:', err);
+    res.status(500).json({ error: err.message || 'Internal Server Error' });
+});
+
 export default app;
